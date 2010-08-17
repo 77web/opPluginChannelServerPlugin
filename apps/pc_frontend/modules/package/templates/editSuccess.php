@@ -4,6 +4,6 @@
   'isMultipart' => true,
 )) ?>
 
-<?php if($isDeletable): ?>
+<?php if(isset($deleteForm)): ?>
   <?php op_include_form('PackageDeleteForm', $deleteForm, array('url'=>url_for('package_delete', $package), 'title'=>__('Delete Package'))); ?>
 <?php endif; ?>

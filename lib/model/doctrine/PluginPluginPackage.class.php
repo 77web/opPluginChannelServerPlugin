@@ -331,4 +331,12 @@ abstract class PluginPluginPackage extends BasePluginPackage implements opAccess
 
     return (0 === strpos($this->bts, $baseUrl));
   }
+  
+  public function isDeletable($memberId)
+  {
+    $releaseCount = Doctrine::getTable('PluginRelease')->createQuery()
+      ->where('package_id = ?', $this->id)
+      ->count();
+    return $this->isLead($memberId) && $releaseCount==0;
+  }
 }

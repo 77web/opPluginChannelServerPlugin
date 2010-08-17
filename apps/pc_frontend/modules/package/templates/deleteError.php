@@ -1,0 +1,1 @@
+<?php op_include_parts('simpleBox', 'deletePackageError', array('title'=>__('Delete the package'), 'body'=>__('The operation is not permitted.'))); ?>

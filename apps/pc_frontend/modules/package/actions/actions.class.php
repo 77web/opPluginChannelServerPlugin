@@ -81,7 +81,7 @@ class packageActions extends sfActions
   public function executeEdit(sfWebRequest $request)
   {
     $this->form = new PluginPackageForm($this->package);
-    if($this->package->isDeletable())
+    if($this->package->isDeletable($this->getUser()->getMemberId()))
     {
       $this->deleteForm = new sfForm();
     }
@@ -100,7 +100,7 @@ class packageActions extends sfActions
 
   public function executeDelete(sfWebRequest $request)
   {
-    if(!$this->package->isDeletable())
+    if(!$this->package->isDeletable($this->getUser()->getMemberId()))
     {
       return sfView::ERROR;
     }
@@ -112,6 +112,8 @@ class packageActions extends sfActions
       $this->redirect('@homepage');
     }
     $this->deleteForm = new sfForm();
+    $this->deleteForm->setWidget('sf_method', new sfWidgetFormInputHidden(array('default'=>'put')));
+    $this->backForm = new sfForm();
   }
 
   public function executeAddRelease(sfWebRequest $request)

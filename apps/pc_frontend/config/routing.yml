@@ -240,6 +240,15 @@ package_update:
     name: op.+Plugin
     sf_method: [post]
 
+package_delete:
+  url:  /package/delete/:name
+  class: opDynamicAclRoute
+  options: { model: PluginPackage, type: object, privilege: edit }
+  param: { module: package, action: delete }
+  requirements:
+    name: op.+Plugin
+    sf_method: [get, head, post, put]
+
 package_use:
   url:  /package/use/:name
   class: opDynamicAclRoute

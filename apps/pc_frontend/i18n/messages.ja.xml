@@ -434,6 +434,22 @@
         <source>The release is removed successfully.</source>
         <target>リリースを削除しました。</target>
       </trans-unit>
+      <trans-unit id="">
+        <source>Delete Package</source>
+        <target>プラグインを削除する</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>The package was deleted successfully.</source>
+        <target>プラグインを削除しました。</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Are you sure?</source>
+        <target>本当に宜しいですか？</target>
+      </trans-unit>
+      <trans-unit id="">
+        <source>Back</source>
+        <target>戻る</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
