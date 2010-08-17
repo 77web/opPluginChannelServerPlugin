@@ -81,6 +81,10 @@ class packageActions extends sfActions
   public function executeEdit(sfWebRequest $request)
   {
     $this->form = new PluginPackageForm($this->package);
+    if($this->package->isDeletable())
+    {
+      $this->deleteForm = new sfForm();
+    }
   }
 
   public function executeUpdate(sfWebRequest $request)
@@ -92,6 +96,22 @@ class packageActions extends sfActions
       'package_home', $this->form->getObject());
 
     $this->setTemplate('edit');
+  }
+
+  public function executeDelete(sfWebRequest $request)
+  {
+    if(!$this->package->isDeletable())
+    {
+      return sfView::ERROR;
+    }
+    if($request->isMethod(sfRequest::PUT))
+    {
+      $request->checkCSRFProtection();
+      $this->package->delete();
+      $this->getUser()->setFlash('notice', 'The package was deleted successfully.');
+      $this->redirect('@homepage');
+    }
+    $this->deleteForm = new sfForm();
   }
 
   public function executeAddRelease(sfWebRequest $request)
